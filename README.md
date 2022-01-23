@@ -4,7 +4,7 @@
      
 Esse repositório foi criado com o objetivo de compartilhar o progresso do Bootcamp focado em Java, oferecido pela DIO em parceria com a GFT.    
 Trata-se de um conteúdo introdutório, então imagino que você não verá nada tão aprofundado aqui, pelo menos por enquanto!   
-Mas enfim, é preciso começar do começo, certo?   <br><br>
+Mas enfim, é preciso começar do começo, certo?   <br><br><br><br><br><br>
 
 
 #### Importante  
