@@ -1,38 +1,56 @@
 import java.util.Random;
 
-public class GeraConta {
+public abstract class Conta implements OperaConta {
 
-
-    private String tipoConta;       //C para corrente e P para poupança
-    private int numeroConta = 0;        //gera 6 dígitos numéricos para a conta
-    private String conta;           //concatena os dois
+    private final int AGENCIA_PADRAO = 1;
+    private static int NUMERO_CONTA = 1;
+    private int agencia;
     private double saldo;
+    private int numero;
+    Cliente cliente;
 
-    Random random = new Random();
 
-    protected String geraCorrente(){
-        tipoConta = "C";
-
-        while (numeroConta<100000){
-        numeroConta = random.nextInt(999999);
-        }
-
-        numeroConta = toString();
-        return tipoConta+conta;
-    }
-
-    protected String geraPoupanca(){
-        tipoConta = "P";
-
-        while (numeroConta<100000){
-            numeroConta = random.nextInt(999999);
-        }
-
-        numeroConta = toString();
-        return tipoConta+conta;
-    }
-
-    public double getSaldo() {
+    Conta (Cliente cliente){
+        this.agencia = AGENCIA_PADRAO;
         this.saldo = saldo;
+        this.numero = NUMERO_CONTA++;
+        this.cliente = cliente;
     }
+
+    @Override
+    public void sacar(double saque) {
+        this.saldo -= saque;
+    }
+
+    @Override
+    public void depositar(double deposito) {
+        this.saldo += deposito;
+    }
+
+    @Override
+    public void transferir(double valor, Conta contaDestino) {
+        this.sacar(valor);
+        contaDestino.depositar(valor);
+    }
+
+    public void dadosTitular(){
+        System.out.println("Dados do titular: ");
+        System.out.println(String.format("Nome: %s", this.cliente.getNome()));
+        System.out.println(String.format("CPF: %s", this.cliente.getCpf()));
+        System.out.println("Data de nascimento: "+ this.cliente.getDataNascimento());
+        System.out.println(String.format("Endereço: %s", this.cliente.getEndereco()));
+    }
+
+    @Override
+    public void extrato() {
+
+        System.out.println(String.format("Agência: %d", agencia));
+        System.out.println(String.format("Conta: %d", numero));
+        System.out.println(String.format("Saldo: R$%.2f \n\n", saldo));
+    }
+
+
+
+
+
 }

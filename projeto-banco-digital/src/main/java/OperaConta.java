@@ -1,2 +1,11 @@
-package PACKAGE_NAME;public interface OperaConta {
+public interface OperaConta {
+
+    void sacar(double saque);
+
+    void depositar(double deposito);
+
+    void transferir(double valor, Conta conta);
+
+    void extrato();
+
 }
