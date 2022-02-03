@@ -1,71 +1,48 @@
 import java.time.LocalDate;
+import java.util.Objects;
 
-public class AtividadesCursos {
+public class Cursos extends Atividades {
 
-    private String titulo;
-    private String descrição;
-    private LocalDate data;
-    private int experiencia;
+    protected int cargaHoraria;
 
-    public enum status (Integer progresso) {
-        CONCLUIDO (100),
-        EM_ANDAMENTO (50),
-        NAO_INICIADO (0);
-
-        private Integer progresso;
-
-        status(Integer progresso) {
-            this.progresso=progresso;
-        }
-
-        public Integer getProgresso() {
-            return progresso;
-        }
-
-        public void setProgresso(Integer progresso) {
-            this.progresso = progresso;
-        }
+    public Cursos(String titulo, String descricao) {
+        super(titulo, descricao);
     }
 
-    public AtividadesCursos(String titulo, String descrição, LocalDate data) {
-        this.titulo = titulo;
-        this.descrição = descrição;
-        this.data = data;
+
+    public Cursos (String titulo, String descricao, int cargaHoraria) {
+        super(titulo, descricao);
+        this.cargaHoraria = cargaHoraria;
     }
 
-    public String getTitulo() {
-        return titulo;
+
+    public int getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public void setCargaHoraria(int cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 
-    public LocalDate getData() {
-        return data;
+    @Override
+    public String toString() {
+        return "Cursos{" +
+                "titulo='" + titulo + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", cargaHoraria=" + cargaHoraria +
+                '}';
     }
 
-    public int getExperiencia() {
-        return experiencia;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cursos cursos = (Cursos) o;
+        return cargaHoraria == cursos.cargaHoraria;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    @Override
+    public int hashCode() {
+        return Objects.hash(cargaHoraria);
     }
-
-    public void setExperiencia(int experiencia) {
-        this.experiencia = experiencia;
-    }
-
-    int CalcularXP (int experiencia){
-        this.experiencia=experiencia;
-        if (status.valueOf("CONCLUIDO"))
-            return status.CONCLUIDO.getProgresso()*experiencia;
-        else if (status.valueOf("EM ANDAMENTO"))
-            return status.EM_ANDAMENTO.getProgresso()*experiencia;
-        else if (status.valueOf("NAO_INICIADO"))
-            return status.EM_ANDAMENTO.getProgresso()*experiencia;
-
-    }
-
 }
